@@ -6,7 +6,7 @@ import streamlit.components.v1 as components
 
 # Konfigurasi Tema Korporat Elit
 st.set_page_config(
-    page_title="PROJECT PHANTOM HUB | Transnational Intelligence Grid",
+    page_title="PROJECT PHANTOM HUB | Granular Intelligence Dossier",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -14,15 +14,15 @@ st.set_page_config(
 st.markdown("""
     <style>
     .main { background-color: #f8fafc; color: #0f172a; font-family: 'Inter', sans-serif; }
-    .dossier-box { background: #ffffff; padding: 22px; border-radius: 6px; border: 1px solid #cbd5e1; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+    .intel-card { background: #ffffff; padding: 22px; border-radius: 6px; border: 1px solid #cbd5e1; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
     h1, h2, h3 { color: #0f172a; font-weight: 700; }
-    .tag-badge { background: #0f172a; color: white; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+    .tag-alert { background: #dc2626; color: white; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
     </style>
 """, unsafe_allow_html=True)
 
 # Header Utama Projek
-st.markdown("### PROJECT PHANTOM HUB // GLOBAL INTEL GRID")
-st.title("Transnational Sanctions Evasion & Shell Corridor Mapping")
+st.markdown("### PROJECT PHANTOM HUB // GRANULAR INTEL DOSSIER")
+st.title("Deep-Dive Transnational Network & Evasion Vector Analysis")
 st.markdown("---")
 
 # Baris Atribusi Principal Investigator
@@ -30,118 +30,110 @@ st.markdown(
     """
     <div style="background-color: #f1f5f9; padding: 12px 18px; border-radius: 6px; border-left: 4px solid #0f172a; margin-bottom: 25px;">
         <span style="font-weight: 600; color: #0f172a;">Principal Investigator:</span> Mohd Khairul Ridhuan bin Mohd Fadzil (Malaysia) &nbsp;|&nbsp; 
-        <span style="font-weight: 600; color: #0f172a;">Operational Scope:</span> 5-Nation Cross-Border Node Telemetry &nbsp;|&nbsp; 
-        <span style="font-weight: 600; color: #0f172a;">Classification:</span> Executive Intelligence Briefing
+        <span style="font-weight: 600; color: #0f172a;">Analytical Depth:</span> Granular UBO & Financial Flow Tracing &nbsp;|&nbsp; 
+        <span style="font-weight: 600; color: #0f172a;">Classification:</span> Restricted Eyes-Only
     </div>
     """,
     unsafe_allow_html=True
 )
 
 # ---------------------------------------------------------
-# SIDEBAR: PEMILIHAN KORIDOR 5 NEGARA
+# SIDEBAR: PEMILIHAN KES OPERASI MENDALAM
 # ---------------------------------------------------------
-st.sidebar.header("5-Nation Corridor Switch")
-selected_nation = st.sidebar.selectbox(
-    "Select Target Operational Node",
+st.sidebar.header("Target Syndicate Dossier")
+selected_syndicate = st.sidebar.selectbox(
+    "Select Investigated Network",
     [
-        "1. Cyprus (The Operational Front-End)",
-        "2. British Virgin Islands (The Ownership Vault)",
-        "3. United Arab Emirates (The Trade Re-Routing Hub)",
-        "4. United Kingdom (The Asset Layering Node)",
-        "5. Singapore (The Asia-Pacific Transit Switch)"
+        "Syndicate Alpha: Dual-Use Tech Diversion (Cyprus-UAE Corridor)",
+        "Syndicate Beta: State-Backed Capital Flight (BVI-London Shield)",
+        "Syndicate Gamma: Maritime Sanctions Evasion (APAC Transit)"
     ]
 )
 
-# Maklumat Terperinci Operasi Setiap Negara
-nation_details = {
-    "1. Cyprus (The Operational Front-End)": {
-        "role": "Virtual Office Saturation & Ghost Director Clustering",
-        "mechanism": "Unstaffed commercial suites housing 100+ active trading shells simultaneously to fake operational substance.",
-        "risk": "Critical (94/100) - Primary vector for dual-use technology diversion."
+# Pangkalan Data Perincian Mendalam (Granular Intelligence Breakdown)
+dossier_data = {
+    "Syndicate Alpha: Dual-Use Tech Diversion (Cyprus-UAE Corridor)": {
+        "ubo": "A. V. Petrov (Linked to state intelligence directorate procurement arms)",
+        "transactions": "Over-invoicing via shell trade credits, layered through Dubai free zone parallel accounts, supplemented by crypto-stablecoin staging.",
+        "backers": "Jurisdictional regulatory arbitrage in non-FATF aligned financial enclaves and permissive transit hubs.",
+        "alt_routes": "Shifting transit nodes from Limassol to Turkish free zones and Central Asian land corridors (Kazakhstan/Armenia re-export).",
+        "vulnerabilities": "High dependency on single port container bottlenecks and recurring proxy director signatures."
     },
-    "2. British Virgin Islands (The Ownership Vault)": {
-        "role": "Anonymous Beneficial Ownership Masking",
-        "mechanism": "Nominee shareholder layers hiding state-backed actors and criminal syndicates behind impenetrable legal veils.",
-        "risk": "Severe (92/100) - Ultimate holding shield for illicit capital."
+    "Syndicate Beta: State-Backed Capital Flight (BVI-London Shield)": {
+        "ubo": "Anonymous Trust Structures acting for sanctioned oligarch families.",
+        "transactions": "Sovereign wealth layering, high-end London residential property acquisitions via offshore mortgage notes, and promissory note loops.",
+        "backers": "BVI confidential registry protections coupled with specialized London wealth management boutiques.",
+        "alt_routes": "Rerouting asset holding vehicles through Caribbean alternative trusts (Bahamas/Nevis) and Singapore family offices.",
+        "vulnerabilities": "Public registries of beneficial ownership pressures and stringent UK Unexplained Wealth Orders (UWOs)."
     },
-    "3. United Arab Emirates (The Trade Re-Routing Hub)": {
-        "role": "Parallel Logistics & Dual-Use Transit",
-        "mechanism": "Re-exporting restricted industrial hardware and utilizing parallel informal settlement channels.",
-        "risk": "High (89/100) - Physical supply chain bottleneck bypass."
-    },
-    "4. United Kingdom (The Asset Layering Node)": {
-        "role": "Luxury Real Estate & Wealth Laundering",
-        "mechanism": "Converting illicit corporate proceeds into high-end London property portfolios via opaque offshore trusts.",
-        "risk": "High (86/100) - Terminal capital laundering endpoint."
-    },
-    "5. Singapore (The Asia-Pacific Transit Switch)": {
-        "role": "Regional Capital Re-direction",
-        "mechanism": "Intermediary corporate accounts moving funds swiftly across APAC maritime trade lanes to blur transaction trails.",
-        "risk": "Elevated (82/100) - High-speed liquidity distribution node."
+    "Syndicate Gamma: Maritime Sanctions Evasion (APAC Transit)": {
+        "ubo": "Consortium of unregistered shipping brokers operating via Singaporean shell entities.",
+        "transactions": "Ship-to-ship (STS) transfer financing, cash-settled bunker fuel invoices, and trade-based laundering of raw commodities.",
+        "backers": "Flag-state convenience registries and lenient maritime enforcement zones in Southeast Asia.",
+        "alt_routes": "Using dark-vessel AIS spoofing and switching insurance providers to non-Western maritime syndicates.",
+        "vulnerabilities": "Satellite geospatial telemetry tracking vessel dark-period anomalies and port-call mismatches."
     }
 }
 
-current_info = nation_details[selected_nation]
+current_dossier = dossier_data[selected_syndicate]
 
 # ---------------------------------------------------------
-# PAPARAN UTAMA: BAGAIMANA IA BEROPERASI (HOW IT OPERATES)
+# PAPARAN UTAMA: ANALISIS GRANULAR (UBO, TRANSACTIONS, BACKERS)
 # ---------------------------------------------------------
 col_left, col_right = st.columns([1.2, 1])
 
 with col_left:
-    st.subheader(f"Operational Node Analysis: {selected_nation.split('(')[0]}")
+    st.subheader("Granular Intelligence Breakdown")
     st.markdown(f"""
-    <div class="dossier-box">
-        <span class="tag-badge">CORRIDOR FUNCTION</span>
-        <h4 style="margin-top:10px;"><b>{current_info['role']}</b></h4>
-        <p><b>How the Mechanism Operates:</b> {current_info['mechanism']}</p>
-        <p><b>Systemic Threat Level:</b> {current_info['risk']}</p>
+    <div class="intel-card">
+        <span class="tag-alert">CONFIDENTIAL DOSSIER</span>
+        <h4 style="margin-top:10px;"><b>Target Network: {selected_syndicate.split(':')[0]}</b></h4>
+        <p><b>1. Ultimate Beneficial Owner (UBO):</b><br>{current_dossier['ubo']}</p>
+        <p><b>2. Transaction & Financial Vector:</b><br>{current_dossier['transactions']}</p>
+        <p><b>3. State Backers & Jurisdictional Shields:</b><br>{current_dossier['backers']}</p>
+        <p><b>4. Alternative Evasion Routes:</b><br>{current_dossier['alt_routes']}</p>
+        <p><b>5. Strategic Vulnerabilities:</b><br>{current_dossier['vulnerabilities']}</p>
     </div>
     """, unsafe_allow_html=True)
-    
-    st.markdown("""
-    ### The Intelligence Value Proposition
-    By monitoring how these 5 nations interact, our telemetry engine detects **synchronised behavioral anomalies**. When a shell entity changes its registration address in Cyprus on the exact week its BVI holding structure mutates, the system flags a **Cross-Border Syndicate Alert** before enforcement agencies intervene.
-    """)
 
 with col_right:
-    st.subheader("Transnational Node Matrix")
-    df_nations = pd.DataFrame([
-        {"Nation": "Cyprus", "Role": "Front-End Shells", "Status": "Active Surveillance"},
-        {"Nation": "BVI", "Role": "Holding Vault", "Status": "Masked UBO"},
-        {"Nation": "UAE", "Role": "Logistics Hub", "Status": "Re-routing"},
-        {"Nation": "UK", "Role": "Asset Layering", "Status": "Real Estate Sink"},
-        {"Nation": "Singapore", "Role": "Capital Switch", "Status": "Fast Transit"}
-    ])
-    st.dataframe(df_nations, use_container_width=True)
+    st.subheader("Intelligence Metrics & Threat Vector")
+    st.metric(label="Network Confidence Level", value="HIGH (96.4%)", delta="Verified Cross-Match")
+    st.metric(label="Financial Flow Opacity", value="CRITICAL", delta="Obfuscated Layers")
+    st.metric(label="Enforcement Priority", value="TIER-1 TARGET", delta="Active Evasion")
+    
+    st.markdown("""
+    ### Why This Precision Matters
+    Agencies like CIA or MI6 do not look at names alone; they map the **financial DNA and escape vectors**. By identifying who backs them and how money flows beneath the surface, investigators can predict their next move before sanctions are bypassed.
+    """)
 
 st.markdown("---")
 
 # ---------------------------------------------------------
-# VISUALISASI RANGKAIAN KORIDOR (NETWORK GRAPH)
+# VISUALISASI RANGKAIAN MENDALAM (DEEP LINK ANALYSIS)
 # ---------------------------------------------------------
-st.subheader("Cross-Border Intelligence Network: Connecting the 5 Nodes")
-st.write("Graf visual di bawah menunjukkan bagaimana aliran kawalan dan aset bergerak merentasi koridor antarabangsa ini melalui proksi dan syarikat cengkerang.")
+st.subheader("Deep-Dive Entity Relationship & Financial Routing Graph")
+st.write("Graf ini memetakan perkaitan antara UBO di belakang tabir, syarikat hadapan (*front companies*), dan laluan alternatif aliran dana.")
 
-net = Network(height="420px", width="100%", bgcolor="#ffffff", font_color="#0f172a", directed=True)
+net = Network(height="450px", width="100%", bgcolor="#ffffff", font_color="#0f172a", directed=True)
 
-# Tambah Nod 5 Negara
-net.add_node("BVI (Holding)", label="BVI\n(Ownership Vault)", color="#1e293b", size=30, shape="box")
-net.add_node("Cyprus (Front)", label="Cyprus\n(Front-End Hub)", color="#dc2626", size=30, shape="box")
-net.add_node("UAE (Logistics)", label="UAE\n(Logistics Hub)", color="#2563eb", size=30, shape="box")
-net.add_node("UK (Assets)", label="UK\n(Asset Layering)", color="#059669", size=30, shape="box")
-net.add_node("Singapore (Capital)", label="Singapore\n(Capital Switch)", color="#d97706", size=30, shape="box")
+# Tambah Nod Hubungan Mendalam
+net.add_node("UBO / State Actor", label="UBO / State Actor\n(Real Mastermind)", color="#dc2626", size=32, shape="box")
+net.add_node("BVI Holding", label="Offshore Holding\n(Asset Veil)", color="#1e293b", size=25)
+net.add_node("Cyprus Front", label="Front Company\n(Operational Shell)", color="#2563eb", size=25)
+net.add_node("UAE Layer", label="Parallel Bank / FX\n(Financial Layering)", color="#d97706", size=25)
+net.add_node("Alternative Route", label="Alt Evasion Route\n(Central Asia / Dark Vessel)", color="#059669", size=28, shape="box")
 
-# Tambah Aliran Hubungan Koridor
-net.add_edge("BVI (Holding)", "Cyprus (Front)", label="Controls Shells", color="#64748b")
-net.add_edge("Cyprus (Front)", "UAE (Logistics)", label="Diverts Cargo", color="#dc2626")
-net.add_edge("UAE (Logistics)", "Singapore (Capital)", label="Routes Proceeds", color="#2563eb")
-net.add_edge("BVI (Holding)", "UK (Assets)", label="Purchases Property", color="#059669")
+# Tambah Hubungan Aliran
+net.add_edge("UBO / State Actor", "BVI Holding", label="Conceals Ownership", color="#dc2626")
+net.add_edge("BVI Holding", "Cyprus Front", label="Directs Capital", color="#64748b")
+net.add_edge("Cyprus Front", "UAE Layer", label="Invoices & FX Flow", color="#2563eb")
+net.add_edge("UAE Layer", "Alternative Route", label="Activates Evasion Vector", color="#059669")
 
-net.save_graph("corridor_network.html")
-with open("corridor_network.html", "r", encoding="utf-8") as f:
+net.save_graph("granular_network.html")
+with open("granular_network.html", "r", encoding="utf-8") as f:
     html_data = f.read()
-components.html(html_data, height=450)
+components.html(html_data, height=480)
 
 st.markdown("---")
 st.markdown(
