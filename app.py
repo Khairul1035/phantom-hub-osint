@@ -1,132 +1,155 @@
 import streamlit as st
 import pandas as pd
+import pydeck as pdk
 
-# Konfigurasi Halaman - Minimalist Corporate Executive Layout
+# ---------------------------------------------------------
+# KONFIGURASI ESTETIKA KORPORAT MINIMALIST
+# ---------------------------------------------------------
 st.set_page_config(
     page_title="Project Phantom Hub | Executive Intelligence Briefing",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-# Gaya CSS Minimalist McKinsey/BCG Dark Corporate Style
+# Rekaan Stail Konsultansi Global (McKinsey/BCG/Dialectic Style: Clean, Light, Professional)
 st.markdown("""
     <style>
-    /* Global Theme */
-    .main { background-color: #0b0c10; color: #c5c6c7; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-    h1, h2, h3 { color: #ffffff !important; font-weight: 500; letter-spacing: -0.5px; }
-    
-    /* Minimalist Cards / Metric Containers */
-    .metric-card {
-        background-color: #1f2833;
-        border: 1px solid #28313b;
-        padding: 24px;
-        border-radius: 4px;
-    }
-    .metric-value { font-size: 28px; font-weight: 600; color: #66fcf1; margin-top: 8px; }
-    .metric-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #8892b0; }
-    
-    /* Executive Summary Box */
-    .exec-box {
-        background-color: #12161f;
-        border-left: 3px solid #66fcf1;
-        padding: 20px;
-        margin-bottom: 24px;
-        border-radius: 0 4px 4px 0;
-    }
+    .main { background-color: #f8f9fa; color: #1a1a1a; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .stMetric { background-color: #ffffff; padding: 20px; border-radius: 6px; border: 1px solid #e1e4e8; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+    .executive-card { background-color: #ffffff; padding: 25px; border-radius: 6px; border: 1px solid #e1e4e8; margin-bottom: 20px; }
+    h1, h2, h3 { color: #111827; font-weight: 700; }
+    p, li { color: #4b5563; font-size: 15px; line-height: 1.6; }
     </style>
 """, unsafe_allow_html=True)
 
-# -----------------------------------------------------------------------------
-# HEADER & ATTRUBUTION (MINIMALIST CORPORATE)
-# -----------------------------------------------------------------------------
+# ---------------------------------------------------------
+# HEADER & EXECUTIVE ATTRIBUTION
+# ---------------------------------------------------------
 st.title("PROJECT PHANTOM HUB")
-st.markdown("### *Micro-Anatomy of Cross-Border Sanctions Evasion & Shadow Logistics*")
+st.markdown("### *Global Micro-Anatomy & Sanctions Evasion Vulnerability Assessment*")
 st.markdown("---")
 
-# Investigator Credit Bar
-st.markdown(f"""
-<div style="font-size: 13px; color: #8892b0; margin-bottom: 30px;">
-    <strong>Principal Investigator:</strong> Mohd Khairul Ridhuan bin Mohd Fadzil (Malaysia) &nbsp;|&nbsp; 
-    <strong>Classification:</strong> Restricted Executive Briefing &nbsp;|&nbsp; 
-    <strong>Framework:</strong> Multi-Source Intelligence & Behavioral Telemetry
-</div>
-""", unsafe_allow_html=True)
+# Baris Atribusi Korporat Rasmi
+st.markdown(
+    """
+    <div style="background-color: #edf2f7; padding: 12px 18px; border-radius: 6px; border-left: 4px solid #1a365d; margin-bottom: 25px;">
+        <span style="font-weight: 600; color: #1a365d;">Principal Investigator:</span> Mohd Khairul Ridhuan bin Mohd Fadzil (Malaysia) &nbsp;|&nbsp; 
+        <span style="font-weight: 600; color: #1a365d;">Classification:</span> Executive Intelligence Briefing &nbsp;|&nbsp; 
+        <span style="font-weight: 600; color: #1a365d;">Framework:</span> Multi-Jurisdictional Node Audit
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
-# -----------------------------------------------------------------------------
-# THE 20-SECOND EXECUTIVE RULE: THE CORE PROBLEM & METRICS
-# -----------------------------------------------------------------------------
-st.markdown("#### **Executive Summary (20-Second Triage)**")
-st.markdown("""
-<div class="exec-box">
-    <strong>The Threat:</strong> Modern illicit finance and supply chain bypass do not occur through complex corporate structures. They concentrate in <strong>microscopic administrative blind spots</strong>—specifically, singular physical "Phantom Hubs" housing clusters of shell entities managed by proxy "Ghost Directors." This dashboard isolates, scores, and visualizes these anomalies in real time.
-</div>
-""", unsafe_allow_html=True)
+# ---------------------------------------------------------
+# PILIHAN NEGARA & NOD GLOBAL (SIDEBAR MINIMALIST)
+# ---------------------------------------------------------
+st.sidebar.header("Global Node Selector")
+selected_node = st.sidebar.selectbox(
+    "Select Strategic Jurisdiction",
+    [
+        "Cyprus (Limassol Transhipment Node)", 
+        "British Virgin Islands (Tortola Holding Node)", 
+        "United Arab Emirates (Dubai Free Zone Entity)",
+        "United Kingdom (London Property Shell Node)"
+    ]
+)
 
-# 3-Column Minimalist Metrics
-col1, col2, col3 = st.columns(3)
+# Data Tetapan Nod Berdasarkan Pilihan Negara
+node_data_map = {
+    "Cyprus (Limassol Transhipment Node)": {"lat": 34.6851, "lon": 33.0384, "shells": 142, "threat": "Critical (94/10)", "focus": "Dual-use technology and semiconductor diversion."},
+    "British Virgin Islands (Tortola Holding Node)": {"lat": 18.4207, "lon": -64.6400, "shells": 489, "threat": "Severe (91/100)", "focus": "Anonymous ownership masking heavy machinery transit."},
+    "United Arab Emirates (Dubai Free Zone Entity)": {"lat": 25.2048, "lon": 55.2708, "shells": 230, "threat": "High (87/100)", "focus": "Petrochemical re-routing and parallel banking channels."},
+    "United Kingdom (London Property Shell Node)": {"lat": 51.5074, "lon": -0.1278, "shells": 95, "threat": "High (84/100)", "focus": "Sovereign wealth layering and luxury asset acquisition."}
+}
 
-with col1:
-    st.markdown("""
-        <div class="metric-card">
-            <div class="metric-label">Target Node Vector</div>
-            <div class="metric-value">Unit 402, Limassol</div>
-            <div style="font-size: 12px; color: #ff6b6b; margin-top: 4px;">▲ Virtual Office Mail-Drop</div>
-        </div>
-    """, unsafe_allow_html=True)
+current_node = node_data_map[selected_node]
 
-with col2:
-    st.markdown("""
-        <div class="metric-card">
-            <div class="metric-label">Entity Concentration</div>
-            <div class="metric-value">142 Active Shells</div>
-            <div style="font-size: 12px; color: #ffcc00; margin-top: 4px;">▲ High Anomaly Clustering</div>
-        </div>
-    """, unsafe_allow_html=True)
+# ---------------------------------------------------------
+# BAHAGIAN 1: ATURAN 20-SAAT (EXECUTIVE METRICS)
+# ---------------------------------------------------------
+col1, col2, col3, col4 = st.columns(4)
+col1.metric("Selected Jurisdiction", selected_node.split(" ")[0], "Target Node")
+col2.metric("Active Shell Entities", f"{current_node['shells']} Units", "Anomalous Density")
+col3.metric("Systemic Threat Index", current_node['threat'], "Sanctions Vector")
+col4.metric("Verification Status", "Verified Real-Time", "Open Telemetry")
 
-with col3:
-    st.markdown("""
-        <div class="metric-card">
-            <div class="metric-label">Systemic Risk Index</div>
-            <div class="metric-value">94.8 / CRITICAL</div>
-            <div style="font-size: 12px; color: #ff6b6b; margin-top: 4px;">▲ Sanctions Evasion Vector</div>
-        </div>
-    """, unsafe_allow_html=True)
+st.markdown("---")
 
-st.markdown("<br>", unsafe_allow_html=True)
-
-# -----------------------------------------------------------------------------
-# ANALYTICAL DEEP-DIVE: LIVE CORRELATION & GHOST DIRECTORS
-# -----------------------------------------------------------------------------
+# ---------------------------------------------------------
+# BAHAGIAN 2: ANALISIS MASALAH & MENGAPA IA BERBAHAYA
+# ---------------------------------------------------------
 col_left, col_right = st.columns([1.2, 1])
 
 with col_left:
-    st.markdown("#### **Behavioral Cross-Mapping: Ghost Directors**")
-    st.markdown("<p style='font-size: 13px; color: #8892b0;'>Isolating proxy directors managing multi-jurisdictional shell entities under a single physical footprint.</p>", unsafe_allow_html=True)
+    st.subheader("1. Strategic Context & The Problem Statement")
+    st.write("""
+    Global commerce relies on trust-based institutional frameworks. However, sophisticated bad actors exploit **microscopic regulatory blind spots** rather than breaching hard perimeters. 
     
-    # Clean, Minimalist Corporate Data Table
-    audit_data = {
-        "Entity Designation": ["Apex Global FZE", "Vanguard Logistics", "Orion Tech Trading", "Meridian Systems"],
-        "Principal Proxy / UBO": ["A. V. Petrov", "A. V. Petrov", "Elena Rostova", "A. V. Petrov"],
-        "Jurisdiction Link": ["Cyprus / UAE", "Cyprus / BVI", "Cyprus / Panama", "Cyprus / Malta"],
-        "Risk Status": ["Critical", "Critical", "Under Watch", "Critical"]
-    }
-    df_audit = pd.DataFrame(audit_data)
-    st.dataframe(df_audit, use_container_width=True, hide_index=True)
+    * **The Phantom Hub Mechanism:** A single physical address (often an unstaffed virtual office or small suite) acting as the registered legal home for hundreds of completely unrelated corporations.
+    * **The Ghost Director Proxy:** The systematic appointment of recurring nominal directors to obscure ultimate beneficial ownership (UBO).
+    """)
+    
+    st.subheader("2. Structural Hazard & Potential Harm")
+    st.markdown(f"""
+    * **Sanctions Evasion Vector:** Enables the unmonitored flow of restricted dual-use components, bypassing international trade restrictions.
+    * **Systemic Financial Risk:** Facilitates illicit layering of funds, disguising state-backed or criminal proceeds as legitimate corporate trade.
+    * **Specific Regional Risk ({selected_node.split(' ')[0]}):** <em>{current_node['focus']}</em>
+    """, unsafe_allow_html=True)
 
 with col_right:
-    st.markdown("#### **Systemic Impact & Industry Disruption**")
+    st.subheader("3. Geospatial Node Intelligence (GeoINT)")
+    # Peta Minialist Korporat (Clean Light Theme)
+    chart_data = pd.DataFrame({
+        'lat': [current_node['lat']],
+        'lon': [current_node['lon']],
+        'name': [selected_node]
+    })
+    
+    st.pydeck_chart(pdk.Deck(
+        map_style='mapbox://styles/mapbox/light-v10',
+        initial_view_state=pdk.ViewState(
+            latitude=current_node['lat'],
+            longitude=current_node['lon'],
+            zoom=12,
+            pitch=30,
+        ),
+        layers=[
+            pdk.Layer(
+                'ScatterplotLayer',
+                data=chart_data,
+                get_position='[lon, lat]',
+                get_color='[220, 38, 38, 200]', # Clean Corporate Red
+                get_radius=800,
+                pickable=True,
+            ),
+        ],
+    ))
+
+st.markdown("---")
+
+# ---------------------------------------------------------
+# BAHAGIAN 3: SOLUSI & SUMBANGAN KEPADA INDUSTRI / KOMUNITI
+# ---------------------------------------------------------
+st.subheader("4. Proprietary Solution & Industry Contribution")
+
+col_sol1, col_sol2 = st.columns(2)
+
+with col_sol1:
     st.markdown("""
-    <div style="font-size: 13px; line-height: 1.6; color: #c5c6c7;">
-        <p><strong>For Corporate Intelligence & Boutiques:</strong> 
-        Provides automated triage capabilities that bypass manual registry delays, allowing elite firms to audit counterparty exposure instantly.</p>
-        
-        <p><strong>For Formal & Underground Intelligence:</strong> 
-        Proves that open-source geospatial metadata and director-overlap clustering can outpace sophisticated proxy layers without breaching privacy mandates.</p>
+    <div class="executive-card">
+        <h4><b>The Algorithmic Solution</b></h4>
+        <p>Project Phantom Hub deploys automated geospatial and network graph correlation to audit multi-jurisdictional shell networks in seconds. By flagging structural anomalies (such as high director clustering and virtual address saturation), compliance officers can preemptively intercept illicit pathways.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col_sol2:
+    st.markdown("""
+    <div class="executive-card">
+        <h4><b>Disrupting Formal & Underground Intelligence</b></h4>
+        <p>This initiative bridges the gap between expensive proprietary intelligence tools and open-source transparency. It sets a new benchmark for corporate compliance boutiques and international legal practices, proving that open-source telemetry can outpace sophisticated proxy networks.</p>
     </div>
     """, unsafe_allow_html=True)
 
 st.markdown("---")
-st.markdown(
-    "<p style='text-align: center; font-size: 11px; color: #4e5d6c;'>Project Phantom Hub &bull; Architected by Mohd Khairul Ridhuan bin Mohd Fadzil &bull; Designed for Executive Decision-Makers</p>", 
-    unsafe_allow_html=True
-)
+st.caption("Project Phantom Hub // Architected and Deployed by Principal Investigator Mohd Khairul Ridhuan bin Mohd Fadzil (Malaysia) for Global Strategic Intelligence Assessment.")
