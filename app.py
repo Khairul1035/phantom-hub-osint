@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import time
-import random
 from datetime import datetime
 
 # McKinsey Executive Dark Theme Configuration
@@ -16,13 +15,13 @@ st.markdown("""
     .main { background-color: #0b0f19; color: #f8fafc; font-family: 'Inter', sans-serif; }
     .metric-container { background: #111827; padding: 16px; border-radius: 6px; border: 1px solid #1f2937; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
     .exec-card { background: #111827; padding: 20px; border-radius: 6px; border: 1px solid #374151; margin-bottom: 16px; }
-    .live-dot { height: 10px; width: 10px; background-color: #10b981; border-radius: 50%; display: inline-block; animation: pulse 1.5p infinite; }
+    .live-dot { height: 10px; width: 10px; background-color: #10b981; border-radius: 50%; display: inline-block; }
     h1, h2, h3 { color: #f8fafc; font-weight: 600; letter-spacing: -0.025em; }
     </style>
 """, unsafe_allow_html=True)
 
 # Executive Header Block
-st.markdown("### STRATEGIC EXECUTIVE WAR-ROOM // INTELIGENCE BRIEFING")
+st.markdown("### STRATEGIC EXECUTIVE WAR-ROOM // INTELLIGENCE BRIEFING")
 st.title("Project Phantom-Nexus: Real-Time Hybrid Cartel & Shell Telemetry")
 st.markdown("---")
 
@@ -148,16 +147,11 @@ elif "2. Real-Time Transaction" in analysis_mode:
     st.subheader("Live Cross-Border Transaction & Packet Stream")
     st.write("Simulated real-time WebSocket telemetry capturing capital flight movements across global node clusters.")
     
-    # Generate dynamic mock real-time stream data
-    stream_data = pd.DataFrame([
-        {"Timestamp": datetime.utcnow().strftime("%H:%M:%S") + " UTC", "Source Node": "Cyprus Front #14", "Destination": "BVI Vault Holding", "Amount ($USD)", "Type": "Over-Invoicing", "Status": "Masked"},
-        {"Timestamp": datetime.utcnow().strftime("%H:%M:%S") + " UTC", "Source Node": "Fast-Food POS #09", "Destination": "Labuan Clearing House", "Amount ($USD)", "Type": "Cash Injection", "Status": "Layered"},
-        {"Timestamp": datetime.utcnow().strftime("%H:%M:%S") + " UTC", "Source Node": "Charity Foundation A", "Destination": "Swiss Private Vault", "Amount ($USD)", "Type": "Tax-Exempt Transfer", "Status": "Secured"},
-        {"Timestamp": datetime.utcnow().strftime("%H:%M:%S") + " UTC", "Source Node": "Dubai Free Zone", "Destination": "Singapore Switch Node", "Amount ($USD)", "Type": "Trade Settlement", "Status": "Routed"}
-    ])
-    # Fix dataframe column assignment for display
     stream_df = pd.DataFrame({
-        "Timestamp": ["19:33:02 UTC", "19:33:04 UTC", "19:33:07 UTC", "19:33:10 UTC"],
+        "Timestamp": [datetime.utcnow().strftime("%H:%M:%S") + " UTC", 
+                      datetime.utcnow().strftime("%H:%M:%S") + " UTC", 
+                      datetime.utcnow().strftime("%H:%M:%S") + " UTC", 
+                      datetime.utcnow().strftime("%H:%M:%S") + " UTC"],
         "Source Node": ["Cyprus Front #14", "Fast-Food POS #09", "Charity Foundation A", "Dubai Free Zone"],
         "Destination": ["BVI Vault Holding", "Labuan Clearing", "Swiss Private Vault", "Singapore Switch"],
         "Volume ($USD)": ["$4,250,000", "$1,890,000", "$6,500,000", "$12,400,000"],
