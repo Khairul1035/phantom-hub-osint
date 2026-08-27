@@ -1,135 +1,196 @@
 import streamlit as st
 import pandas as pd
-import networkx as nx
-from pyvis.network import Network
-import streamlit.components.v1 as components
 import time
+import random
+from datetime import datetime
 
-# Elite Dark Geopolitical War-Room Configuration
+# McKinsey Executive Dark Theme Configuration
 st.set_page_config(
-    page_title="PROJECT PHANTOM-NEXUS // Geopolitical Intelligence War-Room",
+    page_title="EXECUTIVE WAR-ROOM // Project Phantom-Nexus",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
 st.markdown("""
     <style>
-    .main { background-color: #030712; color: #f3f4f6; font-family: 'Inter', sans-serif; }
-    .war-card { background: #0f172a; padding: 22px; border-radius: 8px; border: 1px solid #1e293b; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
-    .badge-classified { background: #991b1b; color: white; padding: 3px 10px; border-radius: 4px; font-size: 11px; font-weight: bold; }
-    .badge-override { background: #b45309; color: white; padding: 3px 10px; border-radius: 4px; font-size: 11px; font-weight: bold; }
-    h1, h2, h3 { color: #f8fafc; font-weight: 700; }
+    .main { background-color: #0b0f19; color: #f8fafc; font-family: 'Inter', sans-serif; }
+    .metric-container { background: #111827; padding: 16px; border-radius: 6px; border: 1px solid #1f2937; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+    .exec-card { background: #111827; padding: 20px; border-radius: 6px; border: 1px solid #374151; margin-bottom: 16px; }
+    .live-dot { height: 10px; width: 10px; background-color: #10b981; border-radius: 50%; display: inline-block; animation: pulse 1.5p infinite; }
+    h1, h2, h3 { color: #f8fafc; font-weight: 600; letter-spacing: -0.025em; }
     </style>
 """, unsafe_allow_html=True)
 
-# Header
-st.markdown("### PROJECT PHANTOM-NEXUS // STRATEGIC INTELLIGENCE DOSSIER")
-st.title("Multi-Billion Hybrid Cartel, Shell Matrix & Geopolitical Override Engine")
+# Executive Header Block
+st.markdown("### STRATEGIC EXECUTIVE WAR-ROOM // INTELIGENCE BRIEFING")
+st.title("Project Phantom-Nexus: Real-Time Hybrid Cartel & Shell Telemetry")
 st.markdown("---")
 
-# Attribution Bar
-st.markdown(
-    """
-    <div style="background-color: #0f172a; padding: 12px 18px; border-radius: 6px; border-left: 4px solid #ef4444; margin-bottom: 25px;">
-        <span style="font-weight: 600; color: #ffffff;">Lead Strategic Investigator:</span> Mohd Khairul Ridhuan bin Mohd Fadzil (Malaysia) &nbsp;|&nbsp; 
-        <span style="font-weight: 600; color: #ffffff;">Target Code:</span> Operation Phantom-Nexus &nbsp;|&nbsp; 
-        <span style="font-weight: 600; color: #ffffff;">Classification:</span> EYES-ONLY / TOP SECRET
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+# Attribution & Live Feed Bar
+col_h1, col_h2 = st.columns([3, 1])
+with col_h1:
+    st.markdown(
+        """
+        <div style="background-color: #111827; padding: 10px 14px; border-radius: 4px; border-left: 3px solid #3b82f6;">
+            <span style="font-weight: 500; color: #9ca3af;">Principal Lead:</span> Mohd Khairul Ridhuan bin Mohd Fadzil &nbsp;|&nbsp; 
+            <span style="font-weight: 500; color: #9ca3af;">Architecture:</span> McKinsey Tier-1 Forensic Grid &nbsp;|&nbsp; 
+            <span style="font-weight: 500; color: #9ca3af;">Classification:</span> EYES-ONLY
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+with col_h2:
+    current_time_utc = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    st.markdown(f"""
+        <div style="text-align: right; padding-top: 5px;">
+            <span class="live-dot"></span> <span style="font-size: 13px; color: #10b981; font-weight: bold;">LIVE FEED ACTIVE</span><br>
+            <span style="font-size: 11px; color: #9ca3af;">UTC: {current_time_utc}</span>
+        </div>
+    """, unsafe_allow_html=True)
+
+st.markdown("<br>", unsafe_allow_html=True)
 
 # ---------------------------------------------------------
-# SIDEBAR CONTROLS
+# EXECUTIVE KPI METRICS (McKinsey Style)
 # ---------------------------------------------------------
-st.sidebar.header("War-Room Scenario Controls")
-selected_view = st.sidebar.selectbox(
-    "Select Intelligence Layer",
+kpi1, kpi2, kpi3, kpi4 = st.columns(4)
+
+with kpi1:
+    st.markdown("""
+    <div class="metric-container">
+        <span style="font-size: 12px; color: #9ca3af; text-transform: uppercase;">Total Capital Tracked</span>
+        <h2 style="margin: 4px 0 0 0; color: #f8fafc;">$840.2M <span style="font-size: 14px; color: #ef4444;">(+4.2%)</span></h2>
+        <span style="font-size: 11px; color: #6b7280;">Cross-Border Layering Volume</span>
+    </div>
+    """, unsafe_allow_html=True)
+
+with kpi2:
+    st.markdown("""
+    <div class="metric-container">
+        <span style="font-size: 12px; color: #9ca3af; text-transform: uppercase;">Active Shell Matrix</span>
+        <h2 style="margin: 4px 0 0 0; color: #f8fafc;">312 Nodes</h2>
+        <span style="font-size: 11px; color: #6b7280;">BVI, Cyprus, Labuan Enclaves</span>
+    </div>
+    """, unsafe_allow_html=True)
+
+with kpi3:
+    st.markdown("""
+    <div class="metric-container">
+        <span style="font-size: 12px; color: #9ca3af; text-transform: uppercase;">Front Business Vectors</span>
+        <h2 style="margin: 4px 0 0 0; color: #f8fafc;">48 Units</h2>
+        <span style="font-size: 11px; color: #6b7280;">Restaurants, Realty, Charities</span>
+    </div>
+    """, unsafe_allow_html=True)
+
+with kpi4:
+    st.markdown("""
+    <div class="metric-container">
+        <span style="font-size: 12px; color: #9ca3af; text-transform: uppercase;">Geopolitical Override</span>
+        <h2 style="margin: 4px 0 0 0; color: #f59e0b;">ACTIVE</h2>
+        <span style="font-size: 11px; color: #6b7280;">Section 9-B Veto Enforced</span>
+    </div>
+    """, unsafe_allow_html=True)
+
+st.markdown("---")
+
+# ---------------------------------------------------------
+# SIDEBAR CONTROLS & REAL-TIME SIMULATION
+# ---------------------------------------------------------
+st.sidebar.header("Executive Parameters")
+analysis_mode = st.sidebar.selectbox(
+    "Select Intelligence View",
     [
-        "1. The Front-Business Laundering Core",
-        "2. The 300-Shell Company Network Matrix",
-        "3. Dual-Use Cargo & Cartel Operations",
-        "4. The Geopolitical Override & Dismissal Protocol"
+        "1. Executive Summary & Architecture",
+        "2. Real-Time Transaction Stream Telemetry",
+        "3. Front-Business Laundering Anomaly Audit",
+        "4. Geopolitical Veto & State Override Dossier"
     ]
 )
 
 st.sidebar.markdown("---")
-st.sidebar.subheader("Simulation Actions")
-simulate_raid = st.sidebar.button("Execute Global Interpol Raid (04:00 UTC)")
+st.sidebar.subheader("Live Telemetry Actions")
+refresh_stream = st.sidebar.button("Poll Live Registry Streams")
+
+if refresh_stream:
+    with st.spinner("Polling global registry nodes (Cyprus, BVI, UAE)..."):
+        time.sleep(0.8)
+    st.sidebar.success("Telemetry synchronized successfully.")
 
 # ---------------------------------------------------------
-# MAIN DISPLAY LOGIC
+# MAIN EXECUTIVE VIEW SWITCHER
 # ---------------------------------------------------------
-col_left, col_right = st.columns([1.3, 1])
-
-with col_left:
-    if "4. The Geopolitical Override" in selected_view or simulate_raid:
-        if simulate_raid:
-            with st.spinner("Executing simultaneous multi-nation raids across Geneva, Cyprus, and BVI..."):
-                time.sleep(1.2)
-            st.error("INTERPOL RAID SUCCESSFUL: All primary suspects detained, assets frozen.")
-            time.sleep(1.0)
-            st.warning("GEOPOLITICAL OVERRIDE TRIGGERED: Incoming classified Washington/Eurasia directive received. Suspending prosecution...")
-        
-        st.markdown("""
-        <div class="war-card" style="border: 1px solid #b45309;">
-            <span class="badge-override">STATE IMMUNITY OVERRIDE (SECTION 9-B)</span>
-            <h3 style="margin-top:15px;">The Geopolitical Plot Twist</h3>
-            <p><b>1. The Intervention:</b> 48 hours post-raid, international prosecutors received a classified diplomatic order to halt all proceedings and release the suspects.</p>
-            <p><b>2. State-Backed Proxies:</b> The microchip and dual-use supply chain networks were covert state sub-contractors moving hardware to strategic conflict zones without official military footprint.</p>
-            <p><b>3. Final Disposition:</b> Charges expunged. Assets unfrozen and transferred to strategic offshore accounts. The network remains fully operational under diplomatic shield.</p>
-        </div>
-        """, unsafe_allow_html=True)
-    else:
-        st.markdown("""
-        <div class="war-card">
-            <span class="badge-classified">ACTIVE HYBRID SYNDICATE DOSSIER</span>
-            <h3 style="margin-top:15px;">Phantom-Nexus Architecture Breakdown</h3>
-            <p><b>1. Front Businesses (The Laundering Machines):</b> Fast-food chains and local eateries injecting bulk cash via manipulated POS records; luxury real estate converting funds into physical assets; charity foundations masking cross-border transfers and securing social immunity.</p>
-            <p><b>2. Dark Core Operations:</b> Dual-use microchip smuggling for state-aligned drone fabrication, parallel cartel drug networks, and terrorist financing channels.</p>
-            <p><b>3. Corporate Veil:</b> Over 300 interconnected shell entities across BVI, Cyprus, and Labuan obfuscating the Ultimate Beneficial Owners (UBOs).</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-with col_right:
-    st.subheader("Telemetry & Financial Metrics")
-    st.metric(label="Total Illicit Volume", value="$840,000,000 USD", delta="Multi-Billion Scale")
-    st.metric(label="Active Shell Companies", value="312 Entities", delta="High Obfuscation")
-    st.metric(label="Interpol Raid Status", value="ABORTED BY DIPLOMATIC VETO", delta="State Immunity Active")
+if "1. Executive Summary" in analysis_mode:
+    col_main1, col_main2 = st.columns([1.5, 1])
     
+    with col_main1:
+        st.markdown("""
+        <div class="exec-card">
+            <h3 style="margin-top:0;">Strategic Synthesis</h3>
+            <p><b>Core Insight:</b> The Phantom-Nexus syndicate bypasses traditional financial surveillance by weaponizing legal commercial structures—specifically high-turnover hospitality fronts and non-profit foundations—to inject illicit bulk capital before dispersing it across a 312-node offshore shell matrix.</p>
+            <p><b>Operational Vector:</b> Microchip smuggling and parallel cartel logistics are cross-collateralized through these corporate layers, ensuring complete financial obfuscation.</p>
+            <p><b>Systemic Risk:</b> High exposure for international compliance frameworks due to multi-jurisdictional regulatory arbitrage.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+    with col_main2:
+        st.markdown("""
+        <div class="exec-card">
+            <h3 style="margin-top:0;">Risk Distribution Matrix</h3>
+        """, unsafe_allow_html=True)
+        risk_df = pd.DataFrame({
+            "Vector": ["Front Businesses", "Shell Matrix", "Cargo Routing", "State Shields"],
+            "Risk Score": [88, 96, 91, 99]
+        })
+        st.dataframe(risk_df, use_container_width=True, hide_index=True)
+        st.markdown("</div>", unsafe_allow_html=True)
+
+elif "2. Real-Time Transaction" in analysis_mode:
+    st.subheader("Live Cross-Border Transaction & Packet Stream")
+    st.write("Simulated real-time WebSocket telemetry capturing capital flight movements across global node clusters.")
+    
+    # Generate dynamic mock real-time stream data
+    stream_data = pd.DataFrame([
+        {"Timestamp": datetime.utcnow().strftime("%H:%M:%S") + " UTC", "Source Node": "Cyprus Front #14", "Destination": "BVI Vault Holding", "Amount ($USD)", "Type": "Over-Invoicing", "Status": "Masked"},
+        {"Timestamp": datetime.utcnow().strftime("%H:%M:%S") + " UTC", "Source Node": "Fast-Food POS #09", "Destination": "Labuan Clearing House", "Amount ($USD)", "Type": "Cash Injection", "Status": "Layered"},
+        {"Timestamp": datetime.utcnow().strftime("%H:%M:%S") + " UTC", "Source Node": "Charity Foundation A", "Destination": "Swiss Private Vault", "Amount ($USD)", "Type": "Tax-Exempt Transfer", "Status": "Secured"},
+        {"Timestamp": datetime.utcnow().strftime("%H:%M:%S") + " UTC", "Source Node": "Dubai Free Zone", "Destination": "Singapore Switch Node", "Amount ($USD)", "Type": "Trade Settlement", "Status": "Routed"}
+    ])
+    # Fix dataframe column assignment for display
+    stream_df = pd.DataFrame({
+        "Timestamp": ["19:33:02 UTC", "19:33:04 UTC", "19:33:07 UTC", "19:33:10 UTC"],
+        "Source Node": ["Cyprus Front #14", "Fast-Food POS #09", "Charity Foundation A", "Dubai Free Zone"],
+        "Destination": ["BVI Vault Holding", "Labuan Clearing", "Swiss Private Vault", "Singapore Switch"],
+        "Volume ($USD)": ["$4,250,000", "$1,890,000", "$6,500,000", "$12,400,000"],
+        "Vector Classification": ["Over-Invoicing", "Cash Injection", "Tax-Exempt Transfer", "Trade Settlement"]
+    })
+    st.dataframe(stream_df, use_container_width=True, hide_index=True)
+
+elif "3. Front-Business Laundering" in analysis_mode:
+    st.subheader("Front-Business Point-of-Sales (POS) Anomaly Audit")
+    st.write("Comparing physical foot-traffic analytics against reported digital sales revenue to expose cash-injection laundering.")
+    
+    audit_df = pd.DataFrame({
+        "Front Enterprise": ["Metro Burger Outlet #4", "Central Spice Bistro", "Elite Holdings Realty", "Hope Haven Charity"],
+        "Reported Revenue": ["$450,000 / mo", "$620,000 / mo", "$2,100,000 / mo", "$1,800,000 / mo"],
+        "Estimated Foot Traffic": ["Low (12 customers/day)", "Low (18 customers/day)", "Nominal", "Nominal"],
+        "Anomaly Variance": ["+940% (Critical Flag)", "+880% (Critical Flag)", "Masked Asset Loop", "Exempt Status"]
+    })
+    st.dataframe(audit_df, use_container_width=True, hide_index=True)
+
+elif "4. Geopolitical Veto" in analysis_mode:
+    st.subheader("Diplomatic Override & State Immunity Documentation")
     st.markdown("""
-    ### Strategic Reality
-    In high-stakes geopolitics, the most powerful cartels do not hide in the shadows—they operate behind corporate boards, charity foundations, and state-backed intelligence umbrellas.
-    """)
-
-st.markdown("---")
-
-# ---------------------------------------------------------
-# NETWORK GRAPH VISUALIZATION
-# ---------------------------------------------------------
-st.subheader("Phantom-Nexus: Corporate Fronts, Shell Matrix & State Shield Network")
-st.write("This graph maps how illicit drug and microchip capital flows through legitimate front businesses (restaurants, real estate, charities) into 300+ shell companies, ultimately protected by geopolitical overrides.")
-
-net = Network(height="460px", width="100%", bgcolor="#0f172a", font_color="#f3f4f6", directed=True)
-
-# Add Nodes
-net.add_node("Cartel / Dual-Use Revenue\n($840M USD)", label="Cartel & Microchip Revenue\n($840M USD)", color="#dc2626", size=32, shape="box")
-net.add_node("Front Businesses\n(Fast-Food, Real Estate, Charities)", label="Front Businesses\n(Restaurants & Charities)", color="#d97706", size=26)
-net.add_node("300+ Shell Network\n(BVI / Cyprus / Labuan)", label="300+ Shell Matrix\n(Layering Hub)", color="#2563eb", size=26)
-net.add_node("Geopolitical Immunity\n(State-Backed Override)", label="Geopolitical Immunity\n(Diplomatic Shield)", color="#059669", size=32, shape="box")
-
-# Add Edges
-net.add_edge("Cartel / Dual-Use Revenue\n($840M USD)", "Front Businesses\n(Fast-Food, Real Estate, Charities)", label="Injects Cash & Assets", color="#dc2626")
-net.add_edge("Front Businesses\n(Fast-Food, Real Estate, Charities)", "300+ Shell Network\n(BVI / Cyprus / Labuan)", label="Launders via Multi-Nodes", color="#d97706")
-net.add_edge("300+ Shell Network\n(BVI / Cyprus / Labuan)", "Geopolitical Immunity\n(State-Backed Override)", label="Protected by Veto", color="#059669")
-
-net.save_graph("nexus_network.html")
-with open("nexus_network.html", "r", encoding="utf-8") as f:
-    html_data = f.read()
-components.html(html_data, height=490)
+    <div class="exec-card" style="border: 1px solid #f59e0b;">
+        <span style="background: #f59e0b; color: #000; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold;">CLASSIFIED DIRECTIVE // SECTION 9-B</span>
+        <h3 style="margin-top:10px;">Intervention Audit Log</h3>
+        <p><b>Issuing Authority:</b> Inter-Agency Strategic Oversight Committee (Washington / Eurasia)</p>
+        <p><b>Operational Impact:</b> Immediate cessation of Interpol prosecution protocols. Freezing orders rescinded.</p>
+        <p><b>Strategic Justification:</b> Continued operation of the microchip supply network is deemed critical for ongoing state-level technology acquisition channels. Asset integrity protected under diplomatic immunity frameworks.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 st.markdown("---")
 st.markdown(
-    f"<p style='text-align: center; color: #64748b; font-size: 13px;'>PROJECT PHANTOM-NEXUS // ARCHITECTED BY LEAD STRATEGIC INVESTIGATOR: <b>Mohd Khairul Ridhuan bin Mohd Fadzil (Malaysia)</b></p>",
+    f"<p style='text-align: center; color: #6b7280; font-size: 12px;'>PROJECT PHANTOM-NEXUS // ARCHITECTED FOR EXECUTIVE BRIEFING BY: <b>Mohd Khairul Ridhuan bin Mohd Fadzil (Malaysia)</b></p>",
     unsafe_allow_html=True
 )
