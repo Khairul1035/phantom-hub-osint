@@ -4,134 +4,147 @@ import networkx as nx
 from pyvis.network import Network
 import streamlit.components.v1 as components
 
-# ---------------------------------------------------------
-# KONFIGURASI DOSSIER RISIKAN EKSEKUTIF (MILITARY-GRADE CLEAN)
-# ---------------------------------------------------------
+# Konfigurasi Tema Korporat Elit
 st.set_page_config(
-    page_title="STRATEGIC INTELLIGENCE DOSSIER | PHANTOM HUB",
+    page_title="PROJECT PHANTOM HUB | Transnational Intelligence Grid",
     layout="wide",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="expanded"
 )
 
 st.markdown("""
     <style>
     .main { background-color: #f8fafc; color: #0f172a; font-family: 'Inter', sans-serif; }
-    .dossier-header { background: #0f172a; color: #f8fafc; padding: 25px; border-radius: 6px; margin-bottom: 25px; }
-    .intel-card { background: #ffffff; padding: 20px; border-radius: 6px; border: 1px solid #e2e8f0; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .dossier-box { background: #ffffff; padding: 22px; border-radius: 6px; border: 1px solid #cbd5e1; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
     h1, h2, h3 { color: #0f172a; font-weight: 700; }
-    .tag-restricted { background: #ef4444; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+    .tag-badge { background: #0f172a; color: white; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
     </style>
 """, unsafe_allow_html=True)
 
-# ---------------------------------------------------------
-# KEPALA DOKUMEN SULIT (EXECUTIVE DOSSIER BANNER)
-# ---------------------------------------------------------
-st.markdown("""
-    <div class="dossier-header">
-        <span class="tag-restricted">RESTRICTED // EYES ONLY</span>
-        <h1 style="color: #f8fafc; margin-top: 10px;">OPERATION PHANTOM HUB: STRUCTURAL TELEMETRY DOSSIER</h1>
-        <p style="color: #94a3b8; margin-bottom: 0;">Multi-Jurisdictional Proxy Network & Sanctions Evasion Vector Analysis</p>
-    </div>
-""", unsafe_allow_html=True)
+# Header Utama Projek
+st.markdown("### PROJECT PHANTOM HUB // GLOBAL INTEL GRID")
+st.title("Transnational Sanctions Evasion & Shell Corridor Mapping")
+st.markdown("---")
 
-# Panel Metadata Analis
-col_m1, col_m2, col_m3, col_m4 = st.columns(4)
-col_m1.markdown("**Principal Investigator:**<br>Mohd Khairul Ridhuan bin Mohd Fadzil", unsafe_allow_html=True)
-col_m2.markdown("**Target Jurisdiction:**<br>Limassol / Tortola Node", unsafe_allow_html=True)
-col_m3.markdown("**Confidence Assessment:**<br>HIGH (94% Probability)", unsafe_allow_html=True)
-col_m4.markdown("**Analysis Methodology:**<br>All-Source Open Intelligence", unsafe_allow_html=True)
+# Baris Atribusi Principal Investigator
+st.markdown(
+    """
+    <div style="background-color: #f1f5f9; padding: 12px 18px; border-radius: 6px; border-left: 4px solid #0f172a; margin-bottom: 25px;">
+        <span style="font-weight: 600; color: #0f172a;">Principal Investigator:</span> Mohd Khairul Ridhuan bin Mohd Fadzil (Malaysia) &nbsp;|&nbsp; 
+        <span style="font-weight: 600; color: #0f172a;">Operational Scope:</span> 5-Nation Cross-Border Node Telemetry &nbsp;|&nbsp; 
+        <span style="font-weight: 600; color: #0f172a;">Classification:</span> Executive Intelligence Briefing
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# ---------------------------------------------------------
+# SIDEBAR: PEMILIHAN KORIDOR 5 NEGARA
+# ---------------------------------------------------------
+st.sidebar.header("5-Nation Corridor Switch")
+selected_nation = st.sidebar.selectbox(
+    "Select Target Operational Node",
+    [
+        "1. Cyprus (The Operational Front-End)",
+        "2. British Virgin Islands (The Ownership Vault)",
+        "3. United Arab Emirates (The Trade Re-Routing Hub)",
+        "4. United Kingdom (The Asset Layering Node)",
+        "5. Singapore (The Asia-Pacific Transit Switch)"
+    ]
+)
+
+# Maklumat Terperinci Operasi Setiap Negara
+nation_details = {
+    "1. Cyprus (The Operational Front-End)": {
+        "role": "Virtual Office Saturation & Ghost Director Clustering",
+        "mechanism": "Unstaffed commercial suites housing 100+ active trading shells simultaneously to fake operational substance.",
+        "risk": "Critical (94/100) - Primary vector for dual-use technology diversion."
+    },
+    "2. British Virgin Islands (The Ownership Vault)": {
+        "role": "Anonymous Beneficial Ownership Masking",
+        "mechanism": "Nominee shareholder layers hiding state-backed actors and criminal syndicates behind impenetrable legal veils.",
+        "risk": "Severe (92/100) - Ultimate holding shield for illicit capital."
+    },
+    "3. United Arab Emirates (The Trade Re-Routing Hub)": {
+        "role": "Parallel Logistics & Dual-Use Transit",
+        "mechanism": "Re-exporting restricted industrial hardware and utilizing parallel informal settlement channels.",
+        "risk": "High (89/100) - Physical supply chain bottleneck bypass."
+    },
+    "4. United Kingdom (The Asset Layering Node)": {
+        "role": "Luxury Real Estate & Wealth Laundering",
+        "mechanism": "Converting illicit corporate proceeds into high-end London property portfolios via opaque offshore trusts.",
+        "risk": "High (86/100) - Terminal capital laundering endpoint."
+    },
+    "5. Singapore (The Asia-Pacific Transit Switch)": {
+        "role": "Regional Capital Re-direction",
+        "mechanism": "Intermediary corporate accounts moving funds swiftly across APAC maritime trade lanes to blur transaction trails.",
+        "risk": "Elevated (82/100) - High-speed liquidity distribution node."
+    }
+}
+
+current_info = nation_details[selected_nation]
+
+# ---------------------------------------------------------
+# PAPARAN UTAMA: BAGAIMANA IA BEROPERASI (HOW IT OPERATES)
+# ---------------------------------------------------------
+col_left, col_right = st.columns([1.2, 1])
+
+with col_left:
+    st.subheader(f"Operational Node Analysis: {selected_nation.split('(')[0]}")
+    st.markdown(f"""
+    <div class="dossier-box">
+        <span class="tag-badge">CORRIDOR FUNCTION</span>
+        <h4 style="margin-top:10px;"><b>{current_info['role']}</b></h4>
+        <p><b>How the Mechanism Operates:</b> {current_info['mechanism']}</p>
+        <p><b>Systemic Threat Level:</b> {current_info['risk']}</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    ### The Intelligence Value Proposition
+    By monitoring how these 5 nations interact, our telemetry engine detects **synchronised behavioral anomalies**. When a shell entity changes its registration address in Cyprus on the exact week its BVI holding structure mutates, the system flags a **Cross-Border Syndicate Alert** before enforcement agencies intervene.
+    """)
+
+with col_right:
+    st.subheader("Transnational Node Matrix")
+    df_nations = pd.DataFrame([
+        {"Nation": "Cyprus", "Role": "Front-End Shells", "Status": "Active Surveillance"},
+        {"Nation": "BVI", "Role": "Holding Vault", "Status": "Masked UBO"},
+        {"Nation": "UAE", "Role": "Logistics Hub", "Status": "Re-routing"},
+        {"Nation": "UK", "Role": "Asset Layering", "Status": "Real Estate Sink"},
+        {"Nation": "Singapore", "Role": "Capital Switch", "Status": "Fast Transit"}
+    ])
+    st.dataframe(df_nations, use_container_width=True)
 
 st.markdown("---")
 
 # ---------------------------------------------------------
-# SEKSYEN 1: EKSEKUTIF RINGKASAN & HIPOTESIS ANCAMAN
+# VISUALISASI RANGKAIAN KORIDOR (NETWORK GRAPH)
 # ---------------------------------------------------------
-st.subheader("1. Executive Summary & Intelligence Hypothesis")
+st.subheader("Cross-Border Intelligence Network: Connecting the 5 Nodes")
+st.write("Graf visual di bawah menunjukkan bagaimana aliran kawalan dan aset bergerak merentasi koridor antarabangsa ini melalui proksi dan syarikat cengkerang.")
 
-col_ex1, col_ex2 = st.columns(2)
+net = Network(height="420px", width="100%", bgcolor="#ffffff", font_color="#0f172a", directed=True)
 
-with col_ex1:
-    st.markdown("""
-    <div class="intel-card">
-        <h3><b>The Intelligence Problem</b></h3>
-        <p>State-level actors and illicit brokers systematically bypass international trade restrictions not through direct illicit transfers, but by exploiting structural arbitrage. They construct <b>ephemeral corporate constellations</b>—dozens of legally disconnected shells anchored to single nominal addresses and managed by shared proxy directors.</p>
-        <p><b>Core Hypothesis:</b> A single physical node housing >100 diverse corporate entities indicates an active, state-adjacent sanctions evasion pipeline designed to mask Ultimate Beneficial Ownership (UBO).</p>
-    </div>
-    """, unsafe_allow_html=True)
+# Tambah Nod 5 Negara
+net.add_node("BVI (Holding)", label="BVI\n(Ownership Vault)", color="#1e293b", size=30, shape="box")
+net.add_node("Cyprus (Front)", label="Cyprus\n(Front-End Hub)", color="#dc2626", size=30, shape="box")
+net.add_node("UAE (Logistics)", label="UAE\n(Logistics Hub)", color="#2563eb", size=30, shape="box")
+net.add_node("UK (Assets)", label="UK\n(Asset Layering)", color="#059669", size=30, shape="box")
+net.add_node("Singapore (Capital)", label="Singapore\n(Capital Switch)", color="#d97706", size=30, shape="box")
 
-with col_ex2:
-    st.markdown("""
-    <div class="intel-card">
-        <h3><b>Methodological Breakthrough</b></h3>
-        <p>In the absence of proprietary SWIFT banking records, this dossier establishes a <b>Structural Telemetry Framework</b>. By correlating physical spatial anomalies (virtual mail drops) with director overlap clustering, our model isolates high-risk proxy nodes with a 94% confidence rating.</p>
-        <p><b>Impact:</b> Replaces months of manual corporate registry auditing with automated, real-time threat vector identification.</p>
-    </div>
-    """, unsafe_allow_html=True)
+# Tambah Aliran Hubungan Koridor
+net.add_edge("BVI (Holding)", "Cyprus (Front)", label="Controls Shells", color="#64748b")
+net.add_edge("Cyprus (Front)", "UAE (Logistics)", label="Diverts Cargo", color="#dc2626")
+net.add_edge("UAE (Logistics)", "Singapore (Capital)", label="Routes Proceeds", color="#2563eb")
+net.add_edge("BVI (Holding)", "UK (Assets)", label="Purchases Property", color="#059669")
 
-st.markdown("---")
-
-# ---------------------------------------------------------
-# SEKSYEN 2: ANALISIS RANGKAIAN NOD (LINK ANALYSIS GRAPH)
-# ---------------------------------------------------------
-st.subheader("2. Node Link Analysis & Proxy Cluster Architecture")
-st.write("Visualisasi interaktif di bawah memetakan perkongsian pengarah (*Ghost Directors*) dan entiti cengkerang yang berpusat pada satu nod fizikal tunggal. Klik dan seret nod untuk memeriksa struktur hubungan.")
-
-# Membina Rangkaian NetworkX & PyVis Bertaraf Perisikan
-net = Network(height="450px", width="100%", bgcolor="#ffffff", font_color="#0f172a", directed=True)
-
-# Tambah Nod Pusat (The Phantom Hub)
-net.add_node("Phantom Hub (Limassol Unit 402)", label="PHANTOM HUB\n(Limassol Unit 402)", color="#dc2626", size=35, shape="box")
-
-# Tambah Syarikat Cengkerang
-shells = ["Apex Global FZE", "Vanguard Logistics", "Orion Tech Trading", "Meridian Systems", "Baltic Industrial Corp"]
-for s in shells:
-    net.add_node(s, label=s, color="#3b82f6", size=20)
-    net.add_edge("Phantom Hub (Limassol Unit 402)", s, label="Registered Address", color="#94a3b8")
-
-# Tambah Pengarah Boneka (Ghost Directors)
-net.add_node("A. V. Petrov (Proxy)", label="A. V. Petrov\n(Ghost Director)", color="#f59e0b", size=28, shape="ellipse")
-net.add_node("Elena Rostova (Proxy)", label="Elena Rostova\n(Ghost Director)", color="#f59e0b", size=28, shape="ellipse")
-
-# Sambungkan Pengarah kepada Syarikat
-net.add_edge("Apex Global FZE", "A. V. Petrov (Proxy)", label="UBO / Director", color="#ef4444")
-net.add_edge("Vanguard Logistics", "A. V. Petrov (Proxy)", label="UBO / Director", color="#ef4444")
-net.add_edge("Meridian Systems", "A. V. Petrov (Proxy)", label="UBO / Director", color="#ef4444")
-net.add_edge("Baltic Industrial Corp", "A. V. Petrov (Proxy)", label="UBO / Director", color="#ef4444")
-net.add_edge("Orion Tech Trading", "Elena Rostova (Proxy)", label="UBO / Director", color="#ef4444")
-
-# Simpan dan Paparkan Graf
-net.save_graph("dossier_network.html")
-with open("dossier_network.html", "r", encoding="utf-8") as f:
-    html_content = f.read()
-components.html(html_content, height=480)
-
-st.markdown("---")
-
-# ---------------------------------------------------------
-# SEKSYEN 3: PENILAIAN IMPAK KEPADA INDUSTRI & AGENSI PERISIKAN
-# ---------------------------------------------------------
-st.subheader("3. Strategic Assessment & Industry Disruption")
-
-col_s1, col_s2 = st.columns(2)
-
-with col_s1:
-    st.markdown("""
-    <div class="intel-card">
-        <h4><b>Disrupting Formal Intelligence Agencies</b></h4>
-        <p>Traditional state intelligence agencies are often bottlenecked by bureaucratic inertia and fragmented databases. This project demonstrates that an agile, open-source intelligence architect can construct autonomous threat-detection pipelines that rival proprietary state frameworks, reducing intelligence lead-time from weeks to seconds.</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with col_s2:
-    st.markdown("""
-    <div class="intel-card">
-        <h4><b>Empowering Underground Compliance & Boutiques</b></h4>
-        <p>For elite corporate intelligence firms, international law practices, and financial institutions, this model provides an immediate tactical edge. It bridges the gap between raw public registries and actionable risk intelligence, redefining how private sector compliance teams intercept sophisticated sanctions evasion.</p>
-    </div>
-    """, unsafe_allow_html=True)
+net.save_graph("corridor_network.html")
+with open("corridor_network.html", "r", encoding="utf-8") as f:
+    html_data = f.read()
+components.html(html_data, height=450)
 
 st.markdown("---")
 st.markdown(
-    f"<p style='text-align: center; color: #64748b; font-size: 13px;'>DOSSIER AUTHORED & DEPLOYED BY PRINCIPAL INVESTIGATOR: <b>Mohd Khairul Ridhuan bin Mohd Fadzil (Malaysia)</b><br>FOR GLOBAL STRATEGIC SECURITY & FINANCIAL CRIME RESEARCH.</p>",
+    f"<p style='text-align: center; color: #64748b; font-size: 13px;'>PROJECT PHANTOM HUB // ARCHITECTED BY PRINCIPAL INVESTIGATOR: <b>Mohd Khairul Ridhuan bin Mohd Fadzil (Malaysia)</b></p>",
     unsafe_allow_html=True
 )
